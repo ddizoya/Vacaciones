@@ -1,5 +1,5 @@
 package net.vacaciones.entity;
-// Generated Feb 7, 2018 8:51:06 PM by Hibernate Tools 5.0.6.Final
+// Generated Feb 7, 2018 10:33:40 PM by Hibernate Tools 5.0.6.Final
 
 import java.util.Date;
 import javax.persistence.Column;

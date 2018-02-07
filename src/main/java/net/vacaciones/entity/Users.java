@@ -1,5 +1,5 @@
 package net.vacaciones.entity;
-// Generated Feb 7, 2018 8:51:06 PM by Hibernate Tools 5.0.6.Final
+// Generated Feb 7, 2018 10:33:40 PM by Hibernate Tools 5.0.6.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -21,7 +21,7 @@ public class Users implements java.io.Serializable {
 	private Integer id;
 	private String name;
 	private String email;
-	private int tipoUsuario;
+	private Integer tipoUsuario;
 	private String password;
 	private String rememberToken;
 	private Date createdAt;
@@ -30,14 +30,15 @@ public class Users implements java.io.Serializable {
 	public Users() {
 	}
 
-	public Users(String name, String email, int tipoUsuario, String password) {
+	public Users(String name, String email, String password, Date createdAt, Date updatedAt) {
 		this.name = name;
 		this.email = email;
-		this.tipoUsuario = tipoUsuario;
 		this.password = password;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
 	}
 
-	public Users(String name, String email, int tipoUsuario, String password, String rememberToken, Date createdAt,
+	public Users(String name, String email, Integer tipoUsuario, String password, String rememberToken, Date createdAt,
 			Date updatedAt) {
 		this.name = name;
 		this.email = email;
@@ -78,12 +79,12 @@ public class Users implements java.io.Serializable {
 		this.email = email;
 	}
 
-	@Column(name = "tipoUsuario", nullable = false)
-	public int getTipoUsuario() {
+	@Column(name = "tipoUsuario")
+	public Integer getTipoUsuario() {
 		return this.tipoUsuario;
 	}
 
-	public void setTipoUsuario(int tipoUsuario) {
+	public void setTipoUsuario(Integer tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
 	}
 
@@ -106,7 +107,7 @@ public class Users implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "created_at", length = 19)
+	@Column(name = "created_at", nullable = false, length = 19)
 	public Date getCreatedAt() {
 		return this.createdAt;
 	}
@@ -116,7 +117,7 @@ public class Users implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "updated_at", length = 19)
+	@Column(name = "updated_at", nullable = false, length = 19)
 	public Date getUpdatedAt() {
 		return this.updatedAt;
 	}

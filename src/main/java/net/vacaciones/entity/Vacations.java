@@ -1,5 +1,5 @@
 package net.vacaciones.entity;
-// Generated Feb 7, 2018 8:51:06 PM by Hibernate Tools 5.0.6.Final
+// Generated Feb 7, 2018 10:33:40 PM by Hibernate Tools 5.0.6.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -35,10 +35,12 @@ public class Vacations implements java.io.Serializable {
 	public Vacations() {
 	}
 
-	public Vacations(Workers workers, String observations, String type) {
+	public Vacations(Workers workers, String observations, String type, Date createdAt, Date updatedAt) {
 		this.workers = workers;
 		this.observations = observations;
 		this.type = type;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
 	}
 
 	public Vacations(Workers workers, String observations, String type, Date createdAt, Date updatedAt, Date dateFrom,
@@ -95,7 +97,7 @@ public class Vacations implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "created_at", length = 19)
+	@Column(name = "created_at", nullable = false, length = 19)
 	public Date getCreatedAt() {
 		return this.createdAt;
 	}
@@ -105,7 +107,7 @@ public class Vacations implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "updated_at", length = 19)
+	@Column(name = "updated_at", nullable = false, length = 19)
 	public Date getUpdatedAt() {
 		return this.updatedAt;
 	}
