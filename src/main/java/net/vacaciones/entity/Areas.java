@@ -1,16 +1,12 @@
 package net.vacaciones.entity;
-// Generated Feb 7, 2018 10:33:40 PM by Hibernate Tools 5.0.6.Final
+// Generated Feb 10, 2018 5:19:38 PM by Hibernate Tools 5.0.6.Final
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,7 +23,6 @@ public class Areas implements java.io.Serializable {
 	private String description;
 	private Date createdAt;
 	private Date updatedAt;
-	private Set<Workers> workerses = new HashSet<Workers>(0);
 
 	public Areas() {
 	}
@@ -37,14 +32,6 @@ public class Areas implements java.io.Serializable {
 		this.description = description;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
-	}
-
-	public Areas(String name, String description, Date createdAt, Date updatedAt, Set<Workers> workerses) {
-		this.name = name;
-		this.description = description;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
-		this.workerses = workerses;
 	}
 
 	@Id
@@ -95,15 +82,6 @@ public class Areas implements java.io.Serializable {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "areas")
-	public Set<Workers> getWorkerses() {
-		return this.workerses;
-	}
-
-	public void setWorkerses(Set<Workers> workerses) {
-		this.workerses = workerses;
 	}
 
 }

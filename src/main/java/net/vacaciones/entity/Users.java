@@ -1,12 +1,16 @@
 package net.vacaciones.entity;
-// Generated Feb 7, 2018 10:33:40 PM by Hibernate Tools 5.0.6.Final
+// Generated Feb 10, 2018 5:19:38 PM by Hibernate Tools 5.0.6.Final
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,11 +25,11 @@ public class Users implements java.io.Serializable {
 	private Integer id;
 	private String name;
 	private String email;
-	private Integer tipoUsuario;
 	private String password;
 	private String rememberToken;
 	private Date createdAt;
 	private Date updatedAt;
+	private Set<UserRole> userRoles = new HashSet<UserRole>(0);
 
 	public Users() {
 	}
@@ -38,15 +42,15 @@ public class Users implements java.io.Serializable {
 		this.updatedAt = updatedAt;
 	}
 
-	public Users(String name, String email, Integer tipoUsuario, String password, String rememberToken, Date createdAt,
-			Date updatedAt) {
+	public Users(String name, String email, String password, String rememberToken, Date createdAt, Date updatedAt,
+			Set<UserRole> userRoles) {
 		this.name = name;
 		this.email = email;
-		this.tipoUsuario = tipoUsuario;
 		this.password = password;
 		this.rememberToken = rememberToken;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
+		this.userRoles = userRoles;
 	}
 
 	@Id
@@ -77,15 +81,6 @@ public class Users implements java.io.Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	@Column(name = "tipoUsuario")
-	public Integer getTipoUsuario() {
-		return this.tipoUsuario;
-	}
-
-	public void setTipoUsuario(Integer tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
 	}
 
 	@Column(name = "password", nullable = false, length = 60)
@@ -124,6 +119,15 @@ public class Users implements java.io.Serializable {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
+	public Set<UserRole> getUserRoles() {
+		return this.userRoles;
+	}
+
+	public void setUserRoles(Set<UserRole> userRoles) {
+		this.userRoles = userRoles;
 	}
 
 }

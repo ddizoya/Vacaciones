@@ -1,15 +1,12 @@
 package net.vacaciones.entity;
-// Generated Feb 7, 2018 10:33:40 PM by Hibernate Tools 5.0.6.Final
+// Generated Feb 10, 2018 5:19:38 PM by Hibernate Tools 5.0.6.Final
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,7 +19,6 @@ import javax.persistence.TemporalType;
 public class Vacations implements java.io.Serializable {
 
 	private Integer id;
-	private Workers workers;
 	private String observations;
 	private String type;
 	private Date createdAt;
@@ -30,22 +26,20 @@ public class Vacations implements java.io.Serializable {
 	private Date dateFrom;
 	private Date dateTo;
 	private Integer daysTaken;
-	private Integer aceptado;
+	private Integer acepted;
 
 	public Vacations() {
 	}
 
-	public Vacations(Workers workers, String observations, String type, Date createdAt, Date updatedAt) {
-		this.workers = workers;
+	public Vacations(String observations, String type, Date createdAt, Date updatedAt) {
 		this.observations = observations;
 		this.type = type;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
 
-	public Vacations(Workers workers, String observations, String type, Date createdAt, Date updatedAt, Date dateFrom,
-			Date dateTo, Integer daysTaken, Integer aceptado) {
-		this.workers = workers;
+	public Vacations(String observations, String type, Date createdAt, Date updatedAt, Date dateFrom, Date dateTo,
+			Integer daysTaken, Integer acepted) {
 		this.observations = observations;
 		this.type = type;
 		this.createdAt = createdAt;
@@ -53,7 +47,7 @@ public class Vacations implements java.io.Serializable {
 		this.dateFrom = dateFrom;
 		this.dateTo = dateTo;
 		this.daysTaken = daysTaken;
-		this.aceptado = aceptado;
+		this.acepted = acepted;
 	}
 
 	@Id
@@ -66,16 +60,6 @@ public class Vacations implements java.io.Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "worker_id", nullable = false)
-	public Workers getWorkers() {
-		return this.workers;
-	}
-
-	public void setWorkers(Workers workers) {
-		this.workers = workers;
 	}
 
 	@Column(name = "observations", nullable = false)
@@ -145,13 +129,13 @@ public class Vacations implements java.io.Serializable {
 		this.daysTaken = daysTaken;
 	}
 
-	@Column(name = "aceptado")
-	public Integer getAceptado() {
-		return this.aceptado;
+	@Column(name = "acepted")
+	public Integer getAcepted() {
+		return this.acepted;
 	}
 
-	public void setAceptado(Integer aceptado) {
-		this.aceptado = aceptado;
+	public void setAcepted(Integer acepted) {
+		this.acepted = acepted;
 	}
 
 }

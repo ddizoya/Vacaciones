@@ -18,8 +18,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan("net.vacaciones")
 @EntityScan
-@SpringBootApplication
 @EnableAutoConfiguration
+@SpringBootApplication
 public class App implements CommandLineRunner {
 
 	@Autowired
