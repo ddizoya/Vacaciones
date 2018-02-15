@@ -20,6 +20,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	@Autowired
+	private RESTAuthenticationSuccessHandler restAuthenticationSuccessHandler;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
@@ -34,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		        .loginProcessingUrl("/api/user/log")
 		        .passwordParameter("password")
 		        .usernameParameter("username")
+		        .successHandler(restAuthenticationSuccessHandler)
 	        .permitAll();
 		
 		http.httpBasic().disable();

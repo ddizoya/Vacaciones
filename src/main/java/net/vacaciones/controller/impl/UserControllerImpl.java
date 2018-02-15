@@ -1,4 +1,4 @@
-package net.vacaciones.controller;
+package net.vacaciones.controller.impl;
 
 import java.security.Principal;
 
@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,10 +22,9 @@ import net.vacaciones.repository.UserRepository;
 import net.vacaciones.service.UserService;
 
 @RestController
-@RequestMapping("/api/user")
-public class UserController {
+public class UserControllerImpl implements UserControllerBasic {
 
-	private Logger logger = Logger.getLogger(UserController.class);
+	private Logger logger = Logger.getLogger(UserControllerImpl.class);
 
 	@Autowired
 	public UserRepository userRepository;
@@ -32,26 +32,19 @@ public class UserController {
 	@Autowired
 	public UserService userService;
 
-	@GetMapping("/register")
 	public ResponseEntity<String> register(HttpServletResponse response, @ModelAttribute UserDTO userDTO) {
-
 		return userService.registerUser(userDTO);
-
 	}
 
-	@RequestMapping(value = "/log", method = {RequestMethod.GET, RequestMethod.POST})
 	public ResponseEntity<String> register() {
+		String role = String.valueOf(SecurityContextHolder.getContext().getAuthentication().getAuthorities().toArray()[0]);
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
-		return new ResponseEntity<String>(String.format("Authenticated as %s", name), HttpStatus.OK);
+		return new ResponseEntity<String>(String.format("Authenticated as %s with role %s", name, role), HttpStatus.OK);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_USER')")
-	@RequestMapping(value = "/after", method = {RequestMethod.GET, RequestMethod.POST})
 	public ResponseEntity<String> afterLog() {
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
 		return new ResponseEntity<String>(String.format("Authenticated as %s", name), HttpStatus.OK);
 	}
-	
-	
 
 }
