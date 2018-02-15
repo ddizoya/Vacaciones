@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import net.vacaciones.dto.UserDTO;
 
-
+@RestController
 @RequestMapping("/api/user")
 public interface UserControllerBasic {
 	

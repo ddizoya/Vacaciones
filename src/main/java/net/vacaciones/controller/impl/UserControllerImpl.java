@@ -1,7 +1,5 @@
 package net.vacaciones.controller.impl;
 
-import java.security.Principal;
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
@@ -9,19 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import net.vacaciones.dto.UserDTO;
 import net.vacaciones.repository.UserRepository;
 import net.vacaciones.service.UserService;
 
-@RestController
+@Component("userControllerBasic")
 public class UserControllerImpl implements UserControllerBasic {
 
 	private Logger logger = Logger.getLogger(UserControllerImpl.class);
